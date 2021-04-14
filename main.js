@@ -24,3 +24,62 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+let counter=0;
+const validateCred=(array)=>{
+  const arrayCopy=array.slice()
+  for (let i=arrayCopy.length-1; i>=0;i--){
+    counter+=1
+    if(counter%2==0){
+      arrayCopy[i]*=2
+      if(arrayCopy[i]>9){
+        arrayCopy[i]-=9
+      }
+    }
+  }
+  let value = arrayCopy.reduce((a,b)=> a+b)
+  if(value%10==0){
+    return true
+  }
+  else{
+    return false
+  }
+}
+console.log(validateCred(valid4))
+console.log(validateCred(invalid1))
+// second function
+const invalidCards=[];
+const findInvalidCards=(array)=>{
+  for(let i=0; i<array.length; i++){
+    if(validateCred(array[i])=== false){
+      invalidCards.push(array[i])
+    }
+  }
+  return invalidCards
+}
+console.log(findInvalidCards([invalid1,invalid2,invalid3,invalid4,invalid5]))
+const faultyCompanies=[]
+const idInvalidCompanies=(array)=>{
+  for(let i=0; i<array.length;i++){
+    if(array[i][0]==3){
+      faultyCompanies.push('Amex')
+    }
+    else if(array[i][0]==4){
+      faultyCompanies.push('Visa')
+    }
+    else if(array[i][0]==5){
+      faultyCompanies.push('Mastercard')
+    }
+    else if(array[i][0]==6){
+      faultyCompanies.push('Discover')
+    }
+    else {faultyCompanies.push('Company not found')}
+    for(let j=0; j<i;j++){
+      if(array[i]===array[j]){
+        faultyCompanies.pop()
+      }
+    }
+  }
+  return faultyCompanies
+}
+console.log(idInvalidCompanies(invalidCards))
+console.log(invalidCards.length)
