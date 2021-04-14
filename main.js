@@ -24,8 +24,8 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
-let counter=0;
 const validateCred=(array)=>{
+  let counter=0;
   const arrayCopy=array.slice()
   for (let i=arrayCopy.length-1; i>=0;i--){
     counter+=1
@@ -45,7 +45,7 @@ const validateCred=(array)=>{
   }
 }
 console.log(validateCred(valid4))
-console.log(validateCred(invalid1))
+console.log(validateCred(invalid2))
 // second function
 const invalidCards=[];
 const findInvalidCards=(array)=>{
@@ -56,7 +56,7 @@ const findInvalidCards=(array)=>{
   }
   return invalidCards
 }
-console.log(findInvalidCards([invalid1,invalid2,invalid3,invalid4,invalid5]))
+console.log(findInvalidCards(batch))
 const faultyCompanies=[]
 const idInvalidCompanies=(array)=>{
   for(let i=0; i<array.length;i++){
@@ -74,7 +74,7 @@ const idInvalidCompanies=(array)=>{
     }
     else {faultyCompanies.push('Company not found')}
     for(let j=0; j<i;j++){
-      if(array[i]===array[j]){
+      if(array[i][0]===array[j][0]){
         faultyCompanies.pop()
       }
     }
